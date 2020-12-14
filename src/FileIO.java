@@ -4,43 +4,24 @@ import java.util.ArrayList;
 public class FileIO {
     private static final String COMMA_DELIMITER = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
+    private static File file = null;
+    private static FileWriter fileWriter = null;
+    private static FileReader fileReader = null;
+    private static BufferedReader bufferedReader = null;
 
-    public static void writePhoneBookToFile(String path, PhoneBook phoneBook) {
-        File file = new File(path);
-        FileWriter fileWriter = null;
+    public static void writePhoneBookToFile(ArrayList<PhoneBook> phoneBooks) {
+        file = new File("PhoneBook.csv");
         try {
-            if (!file.exists()) {
-                System.out.println("File not exists");
-                file.createNewFile();
+            file.createNewFile();
+            fileWriter = new FileWriter(file);
+            for (PhoneBook phoneBook : phoneBooks) {
+                fileWriter.append(phoneBook.toString());
+                fileWriter.write(NEW_LINE_SEPARATOR);
+                fileWriter.flush();
             }
-            fileWriter = new FileWriter(file, true);
-            fileWriter.append(phoneBook.getPhone() + "");
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getGroup());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getName());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getGender());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getAddress());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getDateOfBirth() + "");
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(phoneBook.getEmail() + "");
-            fileWriter.append(NEW_LINE_SEPARATOR);
-            fileWriter.flush();
-
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    System.out.println("Write success!");
-                    fileWriter.close();
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-            }
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Lỗi đọc file");
         }
     }
 

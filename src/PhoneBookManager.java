@@ -1,10 +1,11 @@
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PhoneBookManager {
     public static Scanner scanner = new Scanner(System.in);
-    private List<PhoneBook> phoneList;
+    private ArrayList<PhoneBook> phoneList;
     private FileIO fileIO;
 
     public PhoneBookManager() {
@@ -21,12 +22,11 @@ public class PhoneBookManager {
         String email = inputEmail();
         PhoneBook phoneBook = new PhoneBook(phone,group,name,gender,address,dateOfBirth,email);
         phoneList.add(phoneBook);
-        FileIO.writePhoneBookToFile("PhoneBook.csv", phoneBook);
+        FileIO.writePhoneBookToFile(phoneList);
     }
 
     public void edit(String name) {
         boolean isExisted = false;
-        PhoneBook phoneBook = new PhoneBook();
         int size = phoneList.size();
         for (int i = 0; i < size; i++) {
             if (phoneList.get(i).getName().equals(name)) {
@@ -43,7 +43,7 @@ public class PhoneBookManager {
         if (!isExisted) {
             System.out.println("Name not existed");
         } else {
-            FileIO.writePhoneBookToFile("PhoneBook",phoneBook);
+            FileIO.writePhoneBookToFile(phoneList);
         }
     }
 
@@ -58,7 +58,7 @@ public class PhoneBookManager {
         }
         if (phoneBook != null) {
             phoneList.remove(phoneBook);
-            FileIO.writePhoneBookToFile("PhoneBook.csv",phoneBook);
+            FileIO.writePhoneBookToFile(phoneList);
         } else {
             System.out.println("Phone number not existed");
         }
@@ -66,9 +66,9 @@ public class PhoneBookManager {
 
     public void show() {
         for (PhoneBook phoneBook : phoneList) {
-            System.out.print("Name: " + phoneBook.getName()+",  ");
-            System.out.print("Group: " + phoneBook.getGroup()+",  ");
             System.out.print("Phone number: " + phoneBook.getPhone()+",  ");
+            System.out.print("Group: " + phoneBook.getGroup()+",  ");
+            System.out.print("Name: " + phoneBook.getName()+",  ");
             System.out.print("Gender: " + phoneBook.getGender()+",  ");
             System.out.print("Address: " + phoneBook.getAddress()+",  ");
             System.out.print("Date of birth: " + phoneBook.getDateOfBirth()+",  ");
@@ -139,7 +139,7 @@ public class PhoneBookManager {
         return phoneList;
     }
 
-    public void setPhoneList(List<PhoneBook> phoneList) {
+    public void setPhoneList(ArrayList<PhoneBook> phoneList) {
         this.phoneList = phoneList;
     }
 }

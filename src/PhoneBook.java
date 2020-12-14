@@ -79,13 +79,14 @@ public class PhoneBook implements Serializable {
     @Override
     public String toString() {
         return "PhoneBook{" +
-                "phone='" + phone + '\'' +
-                ", group='" + group + '\'' +
-                ", name='" + name + '\'' +
-                ", gender=" + gender +
-                ", address='" + address + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", email='" + email + '\'' +
+                "Phone='" + phone + '\'' +
+                ", Group='" + group + '\'' +
+                ", Name='" + name + '\'' +
+                ", Gender=" + gender +
+                ", Address='" + address + '\'' +
+                ", DateOfBirth=" + dateOfBirth +
+                ", Email='" + email + '\'' +
                 '}';
     }
+
 }
