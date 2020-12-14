@@ -83,9 +83,7 @@ public class PhoneBookManager {
         String inputValue = scanner.nextLine();
         for (int i = 0; i < phoneBookList.size(); i++) {
             if (phoneBookList.get(i).getName().toLowerCase().contains(inputValue.toLowerCase())
-//                    phoneBookList.get(i).getAddress().toLowerCase().contains(inputValue.toLowerCase()) ||
-//                    phoneBookList.get(i).getEmail().toLowerCase().contains(inputValue.toLowerCase()) ||
-//                    phoneBookList.get(i).getFacebook().toLowerCase().contains(inputValue.toLowerCase())
+
             ) {
                 index = i;
                 check = true;
